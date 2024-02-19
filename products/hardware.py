@@ -18,3 +18,5 @@ class Hardware(Product, Taxable):
     # override the abstract method get_tax() from Taxable class
     def get_tax(self, amount):
         return amount * Taxable.VAT_PERCENTAGE / 100
+
+

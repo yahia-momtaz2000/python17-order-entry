@@ -17,4 +17,7 @@ class Customer(ABC):
     def set_customer_id(self, customer_id):
         self.__customer_id = customer_id
 
+    def get_customer_name(self):
+        return self.__customer_name
+
     # Extra methods
