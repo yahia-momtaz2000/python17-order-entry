@@ -2,12 +2,11 @@ from products.product import Product
 
 
 class Software(Product):
-    def __init__(self, product_id, product_name, product_retail_price, product_description, licence):
+    def __init__(self, product_id=None, product_name=None, product_retail_price=None, product_description=None, licence=None):
         super().__init__(product_id, product_name, product_retail_price, product_description)
         self.__licence = licence
 
-
-    # Accessorrs
+    # Accessors
     def get_licence(self):
         return self.__licence
 

@@ -10,7 +10,6 @@ class DBConnectionFactory:
 
     @staticmethod
     def create_connection():
-        db_conn = None
         try:
             db_conn = mysql.connector.connect(user=DBConnectionFactory.USER,
                                     password=DBConnectionFactory.PASSWORD,

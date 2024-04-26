@@ -2,7 +2,7 @@ from abc import ABC
 
 
 class Product(ABC):
-    def __init__(self, product_id, product_name, product_retail_price, product_description):
+    def __init__(self, product_id=None, product_name=None, product_retail_price=None, product_description=None):
         self.__product_id = product_id
         self.__product_name = product_name
         self.__product_retail_price = product_retail_price
@@ -21,3 +21,5 @@ class Product(ABC):
     def get_product_retail_price(self):
         return self.__product_retail_price
 
+    def get_product_description(self):
+        return self.__product_description
