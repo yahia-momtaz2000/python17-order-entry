@@ -3,6 +3,7 @@ import mysql.connector
 from customers.company import Company
 from db.db_connection_factory import DBConnectionFactory
 
+
 class CompanyHandler:
     @staticmethod
     def insert_company(company):
@@ -194,10 +195,10 @@ class CompanyHandler:
 #     print('-----')
 
 # test get_company_by_id
-my_company = CompanyHandler.get_company_by_id(4)
-print('customer id = ', my_company.get_customer_id())
-print('customer name = ', my_company.get_customer_name())
-print('customer phone = ', my_company.get_customer_phone())
-print('customer address = ', my_company.get_customer_address())
-print('customer contact = ', my_company.get_contact())
-print('customer discount = ', my_company.get_discount())
+# my_company = CompanyHandler.get_company_by_id(4)
+# print('customer id = ', my_company.get_customer_id())
+# print('customer name = ', my_company.get_customer_name())
+# print('customer phone = ', my_company.get_customer_phone())
+# print('customer address = ', my_company.get_customer_address())
+# print('customer contact = ', my_company.get_contact())
+# print('customer discount = ', my_company.get_discount())

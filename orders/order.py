@@ -11,6 +11,18 @@ class Order:
         self.__items_list = []
 
     # accessors
+    def get_order_id(self):
+        return self.__order_id
+
+    def get_customer(self):
+        return self.__customer
+
+    def get_order_date(self):
+        return self.__order_date
+
+    def get_items_list(self):
+        return self.__items_list
+
     def get_order_total(self):
         sum_total = 0
         for item in self.__items_list:
