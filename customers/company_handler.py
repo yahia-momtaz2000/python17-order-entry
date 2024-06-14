@@ -125,7 +125,6 @@ class CompanyHandler:
         # 6- return the List
         return companies_list
 
-
     @staticmethod
     def get_company_by_id(customer_id):
         db_conn = None
@@ -202,3 +201,13 @@ class CompanyHandler:
 # print('customer address = ', my_company.get_customer_address())
 # print('customer contact = ', my_company.get_contact())
 # print('customer discount = ', my_company.get_discount())
+
+
+
+# insert company
+# my_company = Company(customer_name='Samsung', customer_phone='012312312312', customer_address='Zagazig',
+#                      contact='Ahmed Hasan', discount=10)
+# CompanyHandler.insert_company(my_company)
+
+# delete company
+CompanyHandler.delete_company(5)
