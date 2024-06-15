@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>518</width>
+    <height>390</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Master Screen</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QMdiArea" name="mdi_area">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>741</width>
+      <height>501</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>518</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_user_actions">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="title">
+     <string>User Actions</string>
+    </property>
+    <addaction name="action_logout"/>
+    <addaction name="separator"/>
+    <addaction name="action_exit_application"/>
+   </widget>
+   <widget class="QMenu" name="menu_products_setup">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="title">
+     <string>Products Setup</string>
+    </property>
+    <addaction name="action_software"/>
+    <addaction name="separator"/>
+    <addaction name="action_hardware"/>
+    <addaction name="action_manual"/>
+   </widget>
+   <addaction name="menu_user_actions"/>
+   <addaction name="menu_products_setup"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_logout">
+   <property name="text">
+    <string>Logout</string>
+   </property>
+  </action>
+  <action name="action_exit_application">
+   <property name="text">
+    <string>Exit Application</string>
+   </property>
+  </action>
+  <action name="action_software">
+   <property name="text">
+    <string>Software</string>
+   </property>
+  </action>
+  <action name="action_hardware">
+   <property name="text">
+    <string>Hardware</string>
+   </property>
+  </action>
+  <action name="action_manual">
+   <property name="text">
+    <string>Manual</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
