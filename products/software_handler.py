@@ -48,11 +48,61 @@ class SoftwareHandler:
                 db_conn.close()
     @staticmethod
     def update_software(software):
-        pass
+        # 1- create db connection
+        conn = DBConnectionFactory.create_connection()
+
+        # 2- prepare sql statement
+        sql = ('update products'
+               ' set product_name = %s,'
+               ' product_retail_price = %s,'
+               ' product_desc = %s'
+               ' where product_id = %s')
+
+        # 3- set parameters
+        values = (software.get_product_name(), software.get_product_retail_price(),
+                  software.get_product_description(), software.get_product_id())
+
+        # 4- execute sql statement
+        my_cursor = conn.cursor()
+        my_cursor.execute(sql, values)
+
+        # Again to software table
+        sql = ('update software'
+               ' set software_licence = %s'
+               ' where product_id = %s')
+
+        values = (software.get_licence(), software.get_product_id())
+        my_cursor.execute(sql, values)
+
+        # 5- commit changes
+        conn.commit()
 
     @staticmethod
     def delete_software(product_id):
-        pass
+        # 1- create db connection
+        conn = DBConnectionFactory.create_connection()
+
+        # 2- prepare sql statement
+        sql = ('delete from software'
+               ' where product_id = %s')
+
+        # 3- set parameters
+        values = (product_id, )
+
+        # 4- execute statement
+        my_cursor = conn.cursor()
+        my_cursor.execute(sql, values)
+
+        # again in products table
+        sql = ('delete from products'
+               ' where product_id = %s')
+
+        values = (product_id, )
+        my_cursor.execute(sql, values)
+
+        # 5- Commit changes
+        conn.commit()
+
 
     @staticmethod
     def get_all_software():
@@ -145,6 +195,12 @@ class SoftwareHandler:
 # my_software = Software(product_name='Firefox', product_retail_price=300, product_description='browsers'
 #                        , licence='512-12321-123-123')
 # SoftwareHandler.insert_software(my_software)
+
+# my_software = Software(8, product_name='Norton', product_retail_price=333, product_description='anti'
+#                         , licence='555-222-333')
+# SoftwareHandler.update_software(my_software)
+
+# SoftwareHandler.delete_software(20)
 
 # sw_list = SoftwareHandler.get_all_software()
 # for software in sw_list:

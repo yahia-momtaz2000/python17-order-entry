@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushB
     QRadioButton, QCheckBox, QTextEdit, QMenu, QAction, QMdiArea
 import sys
 
-from gui import login_module_ui
+from gui import login_module_ui, software_module_ui
 
 
 class MasterScreen(QMainWindow):  # inheritance FirstWindow class inherit from QMainWindow class
@@ -33,6 +33,9 @@ class MasterScreen(QMainWindow):  # inheritance FirstWindow class inherit from Q
 
 
         # Define Operations ??
+        # self.action_logout.triggered.connect(self.func_logout)
+        self.action_software.triggered.connect(self.func_open_software_screen)
+
 
         # Define initializers
         self.showMaximized()  # maximize the screen to full screen
@@ -55,6 +58,13 @@ class MasterScreen(QMainWindow):  # inheritance FirstWindow class inherit from Q
     def func_change_menu_visibility(self, is_valid):
         self.menu_user_actions.setEnabled(is_valid)
         self.menu_products_setup.setEnabled(is_valid)
+
+    def func_open_software_screen(self):
+        print('Open software screen function')
+        self.software_screen = software_module_ui.SoftwareScreen()
+        self.mdi_area.addSubWindow(self.software_screen)
+        self.software_screen.show()
+
 
 # main program
 app_object = QApplication(sys.argv) # sys.argv : list of parameters used when open window from terminal [ not often ]
