@@ -3,7 +3,7 @@ from datetime import datetime
 from orders.order_item import OrderItem
 
 class Order:
-    def __init__(self, order_id, customer):
+    def __init__(self, order_id=None, customer=None):
         self.__order_id = order_id
         self.__customer = customer
         self.__order_date = datetime.now()
@@ -14,8 +14,14 @@ class Order:
     def get_order_id(self):
         return self.__order_id
 
+    def set_order_id(self, order_id):
+        self.__order_id = order_id
+
     def get_customer(self):
         return self.__customer
+
+    def set_customer(self, customer):
+        self.__customer = customer
 
     def get_order_date(self):
         return self.__order_date

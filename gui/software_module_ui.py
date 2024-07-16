@@ -5,13 +5,16 @@ from PyQt5 import QtGui, uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushButton, QMessageBox, QComboBox, \
     QRadioButton, QCheckBox, QTextEdit, QMenu, QAction, QMdiArea, QTableWidget, QTableWidgetItem
 
+from gui import cart_module_ui
+from gui.login_module_ui import LoginScreen
 from products.software import Software
 from products.software_handler import SoftwareHandler
 
 
 class SoftwareScreen(QMainWindow):  # inheritance FirstWindow class inherit from QMainWindow class
-    def __init__(self):
+    def __init__(self, master_module_reference):
         super().__init__()
+        self.master_module_reference = master_module_reference
 
         # Load ui File
         uic.loadUi('software_module_ui.ui', self)
@@ -40,8 +43,10 @@ class SoftwareScreen(QMainWindow):  # inheritance FirstWindow class inherit from
         self.table_software.clicked.connect(self.func_choose_row)
         self.button_edit.clicked.connect(self.func_edit_row)
         self.button_delete.clicked.connect(self.func_delete_row)
+        self.button_add_cart.clicked.connect(self.func_add_cart)
 
         # Initializers
+        self.cart_screen = None
         # Load table data
         self.func_load_data()
 
@@ -180,6 +185,31 @@ class SoftwareScreen(QMainWindow):  # inheritance FirstWindow class inherit from
         except Exception as ex:
             print('Error in func add row', ex)
 
+    def func_add_cart(self):
+        try:
+            # add current software object to the current order
+            product_id = self.line_edit_product_id.text()
+            current_software = SoftwareHandler.get_software_by_id(product_id)
+            # add this software to the current order
+            LoginScreen.current_order.add_product_to_cart(current_software)
+
+            # Check if the cart screen is already open
+            if self.cart_screen is not None and not self.cart_screen.isHidden():
+                print('Cart is already opened - just activate it')
+                self.cart_screen.activateWindow()
+                self.cart_screen.func_fill_cart()
+                return  # end the function
+
+            # this part will be run once ( The first time to run the cart window )
+            print('Open software screen function')
+            self.cart_screen = cart_module_ui.CartScreen() # open new window
+            self.master_module_reference.mdi_area.addSubWindow(self.cart_screen)
+            self.cart_screen.show()
+
+            # connect close event to set cart screen to None
+            self.cart_screen.destroyed.connect(lambda: setattr(self, 'cart_screen', None))
+        except Exception as ex:
+            print('Error in func_add_cart', ex)
 # main program
 # app_object = QApplication(sys.argv) # sys.argv : list of parameters used when open window from terminal [ not often ]
 # widgets_window_object = SoftwareScreen()

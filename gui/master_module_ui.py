@@ -49,7 +49,6 @@ class MasterScreen(QMainWindow):  # inheritance FirstWindow class inherit from Q
         # Show window
         self.show()
 
-
     def func_open_login_screen(self):
         self.login_screen = login_module_ui.LoginScreen(self)  # object from LoginScreen
         self.mdi_area.addSubWindow(self.login_screen)
@@ -61,7 +60,7 @@ class MasterScreen(QMainWindow):  # inheritance FirstWindow class inherit from Q
 
     def func_open_software_screen(self):
         print('Open software screen function')
-        self.software_screen = software_module_ui.SoftwareScreen()
+        self.software_screen = software_module_ui.SoftwareScreen(self)
         self.mdi_area.addSubWindow(self.software_screen)
         self.software_screen.show()
 

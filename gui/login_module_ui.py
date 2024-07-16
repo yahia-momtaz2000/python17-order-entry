@@ -6,9 +6,14 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushB
     QRadioButton, QCheckBox, QTextEdit
 import sys
 
+from customers.company_handler import CompanyHandler
+from orders.order import Order
 
 
 class LoginScreen(QMainWindow):  # inheritance FirstWindow class inherit from QMainWindow class
+    # static attributes
+    current_order = Order()
+
     def __init__(self, master_module_reference):
         super().__init__()
         self.master_module_reference = master_module_reference
@@ -36,6 +41,11 @@ class LoginScreen(QMainWindow):  # inheritance FirstWindow class inherit from QM
             print('Valid login - Welcome')
             self.line_edit_username.setText('')
             self.line_edit_password.setText('')
+            # set order
+            LoginScreen.current_order.set_order_id(1001) # temp value
+            LoginScreen.current_order.set_customer(CompanyHandler.get_company_by_id(2))
+            print('test the current customer = ', LoginScreen.current_order.get_customer().get_customer_name())
+
             # hide login sub window , re-enable menu
             self.master_module_reference.mdi_area.closeAllSubWindows()
             self.master_module_reference.func_change_menu_visibility(True)
